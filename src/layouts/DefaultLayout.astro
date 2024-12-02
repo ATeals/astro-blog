@@ -1,0 +1,28 @@
+---
+
+import BaseHead from '@/components/BaseHead.astro';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import type { SEOProps } from '@/type';
+
+interface Props {
+  seo? : Partial<SEOProps>
+}
+
+const { seo } = Astro.props
+
+---
+
+<html lang="ko">
+	<head>
+		<BaseHead {...seo} />
+	</head>
+
+	<body class="max-w-2xl mx-auto bg-zinc-100">
+		<Header />
+		<main>
+      <slot />
+		</main>
+		<Footer />
+	</body>
+</html>

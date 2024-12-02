@@ -13,6 +13,7 @@ export default defineConfig({
     mdx(),
     sitemap(),
     tailwind({
+      configFile: './tailwind.config.mjs',
       applyBaseStyles: false
     }),
     react()

@@ -30,6 +30,7 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "@typescript-eslint/parser": "^8.16.0",
     "astro-eslint-parser": "^1.1.0",
     "eslint": "^9.16.0",

@@ -1,7 +1,9 @@
+import typography from '@tailwindcss/typography';
 import animation from 'tailwindcss-animate';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  mode: 'jit',
   darkMode: ['class'],
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
@@ -14,5 +16,5 @@ export default {
       colors: {}
     }
   },
-  plugins: [animation]
+  plugins: [animation, typography()]
 };
