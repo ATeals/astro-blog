@@ -9,14 +9,24 @@ import DefaultLayout from "@/layouts/DefaultLayout.astro"
 ---
 
 <DefaultLayout>
-	<h1>Welcome to Astro</h1>
+	<div class="flex flex-col justify-center items-start w-full  mb-10">
+		<div class="h-72 flex flex-col justify-center items-center">
+			<Image src={Logo} alt="Astro Logo" width={120} height={120} class="rounded-full shadow-md shadow-stone-500" />
+			<h1 class="mt-2 font-medium">ATeals</h1>
+		</div>
 
-	<Image src={Logo} alt="Astro Logo" />
+		<p class="mb-10">
+			코드를 즐기며, 커피를 좋아합니다. <br />
+			글 읽는 것을 좋아합니다. 글을 수집하는 것에서 멈추지 않고 작성하려 합니다. 
+		</p>
+		
+		<p>
+			<a href="/blog">Check out our blog ➡️</a>
+		</p>
+	</div>
 
 	<p>
-		Astro is a new kind of static site builder that delivers lightning-fast performance with a modern developer experience.
+		👋 Hi, I'm ATeals. I'm a software engineer and I love building things with code. I'm also a coffee lover and I enjoy reading and writing.
 	</p>
-	<p>
-		<a href="/blog">Check out our blog</a>
-	</p>
+	
 </DefaultLayout>
