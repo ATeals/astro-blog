@@ -63,7 +63,7 @@ const MARKDOWN_STYLES = {
   ],
   code: ['prose-code:before:hidden', 'prose-code:after:hidden', 'prose-code:text-[0.725rem]'],
   codeBlock: ['prose-pre:shadow-lg', 'dark:prose-pre:shadow-black', 'prose-pre:p-2', 'prose-pre:bg-transparent'],
-  image: ['prose-img:rounded-md', 'prose-img:shadow-lg', 'dark:prose-img:shadow-black'],
+  image: ['prose-img:mx-auto', 'prose-img:rounded-md', 'prose-img:shadow-lg', 'dark:prose-img:shadow-black'],
   list: ['prose-li:text-gray-700', 'dark:prose-li:text-gray-300', 'prose-li:font-[350]'],
   table: ['prose-th:text-start']
 } as const;

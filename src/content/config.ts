@@ -7,6 +7,7 @@ const dev = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     img: z.string().optional(),
+    icon: z.string().optional(),
     en: z.string().optional(),
     type: z.string().default('dev'),
     tags: z.array(z.string()).optional()

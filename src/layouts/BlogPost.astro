@@ -1,47 +1,30 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 
-import BaseHead from '@/components/BaseHead.astro';
-import Footer from '@/components/Footer.astro';
-import FormattedDate from '@/components/FormattedDate.astro';
-
 type Props = CollectionEntry<'dev'>['data'];
 
-const { title, description, img, date } = Astro.props
+const { title, description, img, date, icon } = Astro.props
 
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-		</style>
-	</head>
-	<body>
-		<main>
-			<article>
+<article>
+				<!-- 고정 배경 섹션 -->
+	<div class="bg-fixed bg-center bg-cover w-full min-h-[80vh] bg-no-repeat" style=`background-image: url(${img});` />
 
-				<div class="flex flex-col items-center justify-center my-10">
-						<img  src={img} alt="Astro Logo" class="rounded-xl shadow-md"/>
+	<!-- 내용 섹션 -->
+	<div class="rounded-lg relative">
+		{icon && <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-zinc-100 w-20 h-20 flex items-center justify-center rounded-full text-5xl shadow-md">
+			{icon}
+		</div>}
+		<div class="max-w-2xl p-2 pt-16 bg-white shadow-lg rounded-lg">
+			<div class="flex flex-col items-center text-center">
+				<h1 class="text-2xl font-bold mb-4">{title}</h1>
+				<p>{description}</p>
+				<p class="text-gray-500 text-sm mb-6">{date}</p>
+				<hr class="border-b-[0.01rem] mb-10 border-gray-500 w-full"/>
+			</div>
+				<slot />
+		</div>
+	</div>
+</article>
 
-						<h1 class="text-xl font-semibold mt-10 mb-5">{title}</h1>
-						<FormattedDate date={date} />
-
-				</div>
-			
-				<div class="">
-					<br />
-					<div>
-						<slot  />
-					</div>
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
