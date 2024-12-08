@@ -8,8 +8,8 @@ const dev = defineCollection({
     date: z.coerce.date(),
     img: z.string().optional(),
     icon: z.string().optional(),
-    en: z.string().optional(),
     type: z.string().default('dev'),
+    series: z.string().optional(),
     tags: z.array(z.string()).optional()
   })
 });

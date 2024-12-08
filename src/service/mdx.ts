@@ -6,18 +6,7 @@ const getAllCollection = async () => {
   return collections;
 };
 
-export const getMetaBySlug = (slug: string) => {
-  const [dev, type, series, ...slugList] = slug.split('/');
-
-  return {
-    dev,
-    type,
-    series,
-    slug: slugList.join('/')
-  };
-};
-
-type CollectionData = CollectionEntry<'dev'> & { series: string; type: string };
+type CollectionData = CollectionEntry<'dev'> & { href: string };
 
 export class Document {
   public collections: CollectionData[];
@@ -49,12 +38,10 @@ export class Document {
   static async getBySeries(series: string) {
     const collections = await getAllCollection();
 
-    return new Document(collections).collections.filter((collection) => collection.series === series);
+    return new Document(collections).collections.filter((collection) => collection.data?.series === series);
   }
 
   parseCollection(collection: CollectionEntry<'dev'>) {
-    const { type, series, slug } = getMetaBySlug(collection.slug);
-
     return {
       ...collection,
       data: {
@@ -63,9 +50,7 @@ export class Document {
         description: collection.data.description || collection.body.substring(0, 100),
         img: collection.data.img || '/images/astro.png'
       },
-      href: `/posts/${collection.data.en || slug}`,
-      series,
-      type
+      href: `/posts/${collection.slug}`
     };
   }
 

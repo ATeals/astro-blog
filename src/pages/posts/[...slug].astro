@@ -1,15 +1,18 @@
 ---
 
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
 
 import { MDXWrapper } from "@/components/MDXWrapper";
 import BlogPost from '@/layouts/BlogPost.astro';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { Document } from '@/service/mdx';
 
 export async function getStaticPaths() {
-	const posts = await getCollection("dev")
+	const document = await Document.getAll(); 
 
-	return posts.map((post) => ({
+	const post = [...document]
+
+	return post.map((post) => ({
 		params: { slug: post.slug },
 		props: post,
 	}));
