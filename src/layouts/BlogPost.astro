@@ -1,17 +1,25 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import { AdjacentPostNav } from '@/components/AdjacentPostNav';
+import { Giscus } from '@/components/Giscus';
+import type { CollectionData } from '@/service/mdx';
 
-type Props = CollectionEntry<'dev'>['data'];
+interface Props {
+  post: CollectionData;
+  next?: CollectionData;
+  prev?: CollectionData;
+}
 
-const { title, description, img, date, icon } = Astro.props;
+const { title, description, img, date, icon } = Astro.props.post.data;
+
+const { prev, next } = Astro.props;
 ---
 
 <!-- 배경 섹션 -->
-<div class="relative h-screen md:shadow-md">
+<div class="relative h-full md:shadow-md">
   <div class="h-[66vh] rounded-b-lg bg-cover bg-fixed bg-center" style=`background-image: url(${img});`>
     <!-- 카드 섹션 -->
   </div>
-  <div class="absolute top-0 h-full w-full overflow-scroll bg-fixed pt-96 md:pt-[400px]">
+  <div class="absolute top-0 h-dvh w-full overflow-scroll bg-fixed pt-96 md:pt-[400px] md:shadow-md">
     <div class="absolute w-full rounded-lg bg-white p-2 pt-16 shadow-lg">
       {
         icon && (
@@ -27,6 +35,10 @@ const { title, description, img, date, icon } = Astro.props;
         <hr class="my-10 w-full border-b-[0.01rem] border-gray-500" />
       </div>
       <slot />
+
+      <AdjacentPostNav className="my-5" next={next} prev={prev} />
+
+      <Giscus client:load />
     </div>
   </div>
 </div>

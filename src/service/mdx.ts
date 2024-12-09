@@ -11,7 +11,7 @@ const getAllCollection = async () => {
   return [...dev, ...docs];
 };
 
-export class Document {
+export class PostBuilder {
   public collections: CollectionData[];
 
   constructor(collections: AllCollectionEntry[]) {
@@ -23,25 +23,23 @@ export class Document {
   static async getAll() {
     const collections = await getAllCollection();
 
-    return new Document(collections);
+    return new PostBuilder(collections);
   }
 
-  static async getByCollection(name: 'dev' | 'docs') {
-    const collections = await getCollection(name);
+  static async getByCollection(name: string) {
+    const collections = PostBuilder.isCollectionType(name) ? await getCollection(name) : await getAllCollection();
 
-    return new Document(collections);
+    return new PostBuilder(collections);
   }
 
-  static async getByType(type: string) {
-    const collections = await getAllCollection();
-
-    return new Document(collections.filter((collection) => collection.data.type === type));
+  static isCollectionType(type: string): type is 'dev' | 'docs' {
+    return ['dev', 'docs'].includes(type);
   }
 
   static async getBySeries(series: string) {
     const collections = await getAllCollection();
 
-    return new Document(collections).collections.filter((collection) => collection.data?.series === series);
+    return new PostBuilder(collections).collections.filter((collection) => collection.data?.series === series);
   }
 
   parseCollection(collection: AllCollectionEntry) {
@@ -63,6 +61,28 @@ export class Document {
     );
 
     return this;
+  }
+
+  static async getAdjacentPosts(post: AllCollectionEntry) {
+    const collections = [...(await PostBuilder.getAll())];
+
+    const index = collections.findIndex((collection) => collection.id === post.id);
+
+    return {
+      prev: collections[index - 1],
+      next: collections[index + 1]
+    };
+  }
+
+  static async getAdjacentType(post: AllCollectionEntry) {
+    const collections = [...(await PostBuilder.getByCollection(post.data.type))];
+
+    const index = collections.findIndex((collection) => collection.id === post.id);
+
+    return {
+      prev: collections[index - 1],
+      next: collections[index + 1]
+    };
   }
 
   *[Symbol.iterator]() {

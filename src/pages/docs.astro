@@ -2,9 +2,9 @@
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
 import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
-import { Document } from '@/service/mdx';
+import { PostBuilder } from '@/service/mdx';
 
-const document = await Document.getByCollection('docs');
+const document = await PostBuilder.getByCollection('docs');
 
 const posts = [...document];
 ---
