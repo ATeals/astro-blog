@@ -4,17 +4,17 @@ import IconHeader from '@/layouts/IconHeader.astro';
 import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
 import { Document } from '@/service/mdx';
 
-const document = await Document.getAll();
+const document = await Document.getByType('dev');
 
 const posts = [...document];
 ---
 
 <DefaultLayout>
-  <IconHeader title="POSTS">
-    <div class="m-5 text-5xl" slot="icon">📚</div>
+  <IconHeader title="DEV">
+    <div class="m-5 text-5xl" slot="icon">👾</div>
   </IconHeader>
 
-  <p>블로그의 모든 포스트 모음</p>
+  <p>개발 문서 모음</p>
   <hr class="my-5 border-b-[0.1rem] border-gray-300" />
 
   <GridPostsLayout posts={posts} />

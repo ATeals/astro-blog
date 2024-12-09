@@ -1,0 +1,53 @@
+---
+import FormattedDate from '@/components/FormattedDate.astro';
+import type { CollectionData } from '@/service/mdx';
+
+interface Props {
+  posts: CollectionData[];
+}
+
+const { posts } = Astro.props;
+
+const [post, ...restPosts] = posts;
+---
+
+<section data-animate>
+  <a href={post.href}>
+    <div class="group/posts my-5 flex h-64 rounded-lg shadow-md transition-shadow duration-200 hover:shadow-lg">
+      <div class="h-full w-1/2 overflow-hidden rounded-lg">
+        <img
+          alt={post.data.title}
+          class="h-full w-full object-cover transition-all duration-200 group-hover/posts:scale-110"
+          src={post.data.img}
+        />
+      </div>
+      <div class="relative p-5">
+        <h4 class="text-xl font-normal group-hover/posts:text-primary-xl">{post.data.title}</h4>
+        <p class="absolute bottom-0 text-sm">
+          <FormattedDate date={post.data.date} />
+        </p>
+      </div>
+    </div>
+  </a>
+  <ul class="grid gap-2 md:grid-cols-2">
+    {
+      restPosts.map((post) => (
+        <li class="group/posts">
+          <a href={post.href}>
+            <div class="h-36 overflow-hidden rounded-lg">
+              <img
+                alt={post.data.title}
+                class="h-full w-full object-cover transition-all duration-200 group-hover/posts:scale-110"
+                src={post.data.img}
+              />
+            </div>
+            <h4 class="text-lg font-normal group-hover/posts:text-primary-xl">{post.data.title}</h4>
+            <p class="text-sm">
+              <FormattedDate date={post.data.date} />
+            </p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

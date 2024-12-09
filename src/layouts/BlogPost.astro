@@ -4,27 +4,29 @@ import type { CollectionEntry } from 'astro:content';
 type Props = CollectionEntry<'dev'>['data'];
 
 const { title, description, img, date, icon } = Astro.props;
-
 ---
 
-<article>
-	<!-- 고정 배경 섹션 -->
-	<div class="bg-fixed bg-center bg-cover w-full min-h-[80vh] bg-no-repeat" style=`background-image: url(${img});` />
-
-	<!-- 내용 섹션 -->
-	<div class="rounded-lg relative">
-		{icon && <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-zinc-100 w-20 h-20 flex items-center justify-center rounded-full text-5xl shadow-md">
-			{icon}
-		</div>}
-		<div class="max-w-2xl p-2 pt-16 bg-white shadow-lg rounded-lg">
-			<div class="flex flex-col items-center text-center">
-				<h1 class="text-2xl font-bold mb-4">{title}</h1>
-				<p>{description}</p>
-				<p class="text-gray-500 text-sm mb-6">{date}</p>
-				<hr class="border-b-[0.01rem] my-10 border-gray-500 w-full"/>
-			</div>
-				<slot />
-		</div>
-	</div>
-</article>
-
+<!-- 배경 섹션 -->
+<div class="relative h-screen md:shadow-md">
+  <div class="h-[66vh] rounded-b-lg bg-cover bg-fixed bg-center" style=`background-image: url(${img});`>
+    <!-- 카드 섹션 -->
+  </div>
+  <div class="absolute top-0 h-full w-full overflow-scroll bg-fixed pt-96 md:pt-[400px]">
+    <div class="absolute w-full rounded-lg bg-white p-2 pt-16 shadow-lg">
+      {
+        icon && (
+          <div class="absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 transform items-center justify-center rounded-full bg-zinc-100 text-5xl shadow-md">
+            {icon}
+          </div>
+        )
+      }
+      <div class="flex flex-col items-center text-center">
+        <h1 class="mb-4 text-2xl font-bold">{title}</h1>
+        <p>{description}</p>
+        <p class="mb-6 text-sm text-gray-500">{date}</p>
+        <hr class="my-10 w-full border-b-[0.01rem] border-gray-500" />
+      </div>
+      <slot />
+    </div>
+  </div>
+</div>

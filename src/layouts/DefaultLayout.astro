@@ -1,4 +1,6 @@
 ---
+import '@/styles/global.css';
+import '@/styles/animation.css';
 
 import BaseHead from '@/components/BaseHead.astro';
 import Footer from '@/components/Footer.astro';
@@ -6,23 +8,22 @@ import PretendardFont from '@/components/PretendardFont.astro';
 import type { SEOProps } from '@/type';
 
 interface Props {
-  seo? : Partial<SEOProps>
+  seo?: Partial<SEOProps>;
 }
 
-const { seo } = Astro.props
-
+const { seo } = Astro.props;
 ---
 
 <html lang="ko">
-	<head>
-		<BaseHead {...seo} />
-		<PretendardFont />
-	</head>
+  <head>
+    <BaseHead {...seo} />
+    <PretendardFont />
+  </head>
 
-	<body class="max-w-2xl mx-auto font-sans font-light">
-		<main class="min-h-dvh lg:m-0">
+  <body class="mx-auto max-w-2xl font-sans font-light">
+    <main class="min-h-dvh lg:m-0" data-animate data-animate-speed="slow">
       <slot />
-		</main>
-		<Footer />
-	</body>
+    </main>
+    <Footer />
+  </body>
 </html>

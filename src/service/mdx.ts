@@ -1,12 +1,12 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 
+export type CollectionData = CollectionEntry<'dev'> & { href: string };
+
 const getAllCollection = async () => {
   const collections = await getCollection('dev');
 
   return collections;
 };
-
-type CollectionData = CollectionEntry<'dev'> & { href: string };
 
 export class Document {
   public collections: CollectionData[];
@@ -23,8 +23,8 @@ export class Document {
     return new Document(collections);
   }
 
-  static async getBySlug(slug: 'dev') {
-    const collections = await getCollection(slug);
+  static async getByCollection(name: 'dev') {
+    const collections = await getCollection(name);
 
     return new Document(collections);
   }

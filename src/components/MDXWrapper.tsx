@@ -4,7 +4,9 @@ import '@/styles/callout.css';
 import { cn } from '@/lib/utils';
 
 export const MDXWrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <div className={cn(MARKDOWN_STYLE_CLASSNAME, className)}>{children}</div>
+  <div className={cn(MARKDOWN_STYLE_CLASSNAME, className)} data-animate>
+    {children}
+  </div>
 );
 
 const MARKDOWN_STYLES = {
