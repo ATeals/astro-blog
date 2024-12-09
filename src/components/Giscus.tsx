@@ -1,7 +1,14 @@
+import { useStore } from '@nanostores/react';
 import { useEffect, useRef } from 'react';
+
+import { themeStore } from './Theme/store';
 
 export function Giscus({ classname }: { classname?: string }) {
   const ref = useRef<HTMLDivElement>(null);
+
+  const theme = useStore(themeStore);
+
+  const current = theme === 'dark' ? 'noborder_dark' : 'noborder_light';
 
   const setTheme = (theme: string) => {
     const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
@@ -25,21 +32,19 @@ export function Giscus({ classname }: { classname?: string }) {
     scriptElem.setAttribute('data-reactions-enabled', '1');
     scriptElem.setAttribute('data-emit-metadata', '0');
     scriptElem.setAttribute('data-input-position', 'top');
-    scriptElem.setAttribute('data-theme', 'noborder_light');
+    scriptElem.setAttribute('data-theme', current);
     scriptElem.setAttribute('data-lang', 'ko');
-    scriptElem.setAttribute('data-loading', 'lazy');
-    scriptElem.setAttribute('async', '');
     ref.current.appendChild(scriptElem);
   }, []);
 
-  // useEffect(() => {
-  //   setTheme(current);
-  // }, [current]);
+  useEffect(() => {
+    setTheme(current);
+  }, [theme]);
 
   useEffect(() => {
     const root = document.querySelector('html');
 
-    // if (root?.classList.contains("dark")) setTheme(current);
+    if (root?.classList.contains('dark')) setTheme(current);
   }, []);
 
   return <section className={classname} ref={ref} />;

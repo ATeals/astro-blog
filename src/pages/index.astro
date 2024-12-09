@@ -4,6 +4,7 @@ import Logo from 'public/logo.png';
 
 import PostTypeNav from '@/components/postType/PostTypeNav.astro';
 import SocialLink from '@/components/SocialLink.astro';
+import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
 import { Separator } from '@/components/ui/separator';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
@@ -20,27 +21,30 @@ const posts = [...document].slice(0, 3);
     <IconHeader title="ATeals">
       <Image alt="Logo" class="h-24 w-24" slot={'icon'} src={Logo} />
       <SocialLink />
+      <div class="mt-5">
+        <ThemeDropdown client:load />
+      </div>
     </IconHeader>
-
-    <section class="my-10 flex w-full flex-col items-center text-center">
-      <p data-animate>
-        <span data-animate>코드를 즐기며, 커피를 좋아합니다.</span>
-        <br />
-        <span data-animate>글 읽는 것을 좋아합니다.</span>
-        <br />
-        <span data-animate> 글을 수집하는 것에서 멈추지 않고 작성하려 합니다. </span>
-        <br />
-      </p>
-    </section>
-
-    <section class="mx-2 w-full">
-      <PostTypeNav />
-    </section>
-
-    <section class="my-20 flex flex-col items-center">
-      <h2 class="text-xl">최근 포스트</h2>
-      <Separator />
-      <GridPostsLayout posts={posts} />
-    </section>
   </div>
+
+  <section class="my-10 flex w-full flex-col items-center text-center">
+    <p data-animate>
+      <span data-animate>코드를 즐기며, 커피를 좋아합니다.</span>
+      <br />
+      <span data-animate>글 읽는 것을 좋아합니다.</span>
+      <br />
+      <span data-animate> 글을 수집하는 것에서 멈추지 않고 작성하려 합니다. </span>
+      <br />
+    </p>
+  </section>
+
+  <section class="mx-2 w-full">
+    <PostTypeNav />
+  </section>
+
+  <section class="my-20 flex flex-col items-center">
+    <h2 class="text-xl">최근 포스트</h2>
+    <Separator />
+    <GridPostsLayout posts={posts} />
+  </section>
 </DefaultLayout>
