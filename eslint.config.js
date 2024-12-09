@@ -22,6 +22,7 @@ export default [
   ...eslintPluginAstro.configs['all'],
   {
     rules: {
+      'astro/no-set-html-directive': 'off',
       'no-undef': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true }]

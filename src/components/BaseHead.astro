@@ -36,8 +36,13 @@ const { title = SITE.title, description = SITE.description, image = SITE.img } =
 <meta content={new URL(image, Astro.url)} property="og:image" />
 
 <!-- Twitter -->
-<meta content="summary_large_image" property="twitter:card" />
+<meta content={image} property="twitter:card" />
 <meta content={Astro.url} property="twitter:url" />
 <meta content={title} property="twitter:title" />
 <meta content={description} property="twitter:description" />
 <meta content={new URL(image, Astro.url)} property="twitter:image" />
+
+<!-- SEO -->
+<link href="/sitemap.xml" rel="sitemap" />
+<link href="/rss.xml" rel="alternate" title="RSS" type="application/rss+xml" />
+<link href="/robots.txt" rel="robots" />

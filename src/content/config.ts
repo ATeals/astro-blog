@@ -11,6 +11,7 @@ const definePostCollection = (options: PostCollectionOptions) =>
       title: z.string(),
       description: z.string(),
       date: z.coerce.date(),
+      updated: z.coerce.date().optional(),
       img: z.string().optional(),
       icon: z.string().optional(),
       type: z.string().default(options.type),

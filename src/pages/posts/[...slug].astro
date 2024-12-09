@@ -1,5 +1,6 @@
 ---
 import { MDXWrapper } from '@/components/MDXWrapper';
+import PostJsonLd from '@/components/PostJsonLd.astro';
 import BlogPost from '@/layouts/BlogPost.astro';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import type { CollectionData } from '@/service/mdx';
@@ -32,3 +33,4 @@ const { Content } = await post.render();
     </MDXWrapper>
   </BlogPost>
 </DefaultLayout>
+<PostJsonLd post={post} />
