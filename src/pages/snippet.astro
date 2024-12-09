@@ -5,11 +5,11 @@ import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
 import { POSTS_TYPES_MAP } from '@/service/mdx';
 import { PostBuilder } from '@/service/mdx';
 
-const document = await PostBuilder.getByCollection('dev');
+const document = await PostBuilder.getByCollection('snippet');
 
 const posts = [...document];
 
-const { icon, title, description } = POSTS_TYPES_MAP['dev'];
+const { icon, title, description } = POSTS_TYPES_MAP['snippet'];
 ---
 
 <DefaultLayout>

@@ -2,19 +2,22 @@
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
 import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
+import { POSTS_TYPES_MAP } from '@/service/mdx';
 import { PostBuilder } from '@/service/mdx';
 
 const document = await PostBuilder.getByCollection('docs');
 
 const posts = [...document];
+
+const { icon, title, description } = POSTS_TYPES_MAP['docs'];
 ---
 
 <DefaultLayout>
-  <IconHeader title="DOCS">
-    <div class="m-5 text-5xl" slot="icon">💻</div>
+  <IconHeader title={title}>
+    <div class="m-5 text-5xl" slot="icon">{icon}</div>
   </IconHeader>
 
-  <p>유용한 자료들을 보기 편한 형태로 남깁니다.</p>
+  <p>{description}</p>
   <hr class="my-5 border-b-[0.1rem] border-gray-300" />
 
   {posts && <GridPostsLayout posts={posts} />}

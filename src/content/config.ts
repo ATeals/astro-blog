@@ -21,5 +21,6 @@ const definePostCollection = (options: PostCollectionOptions) =>
 
 const dev = definePostCollection({ type: 'dev' });
 const docs = definePostCollection({ type: 'docs' });
+const snippet = definePostCollection({ type: 'snippet' });
 
-export const collections = { dev, docs };
+export const collections = { dev, docs, snippet };

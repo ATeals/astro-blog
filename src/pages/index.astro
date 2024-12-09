@@ -2,18 +2,25 @@
 import Image from 'astro/components/Image.astro';
 import Logo from 'public/logo.png';
 
+import PostTypeNav from '@/components/PostTypeNav.astro';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
+import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
+import { PostBuilder } from '@/service/mdx';
+
+const document = await PostBuilder.getAll();
+
+const posts = [...document].slice(0, 3);
 ---
 
 <DefaultLayout>
-  <div class="mb-10 flex w-full flex-col items-start justify-center" data-animate data-animate-speed="slow">
+  <div class="flex w-full flex-col items-start justify-center" data-animate data-animate-speed="slow">
     <IconHeader title="POSTS">
       <Image alt="Logo" class="h-24 w-24" slot={'icon'} src={Logo} />
     </IconHeader>
 
-    <section class="flex w-full flex-col items-center text-center" data-animate>
-      <p class="mb-10">
+    <section class="mb-10 flex w-full flex-col items-center text-center">
+      <p data-animate>
         <span data-animate>코드를 즐기며, 커피를 좋아합니다.</span>
         <br />
         <span data-animate>글 읽는 것을 좋아합니다.</span>
@@ -21,10 +28,15 @@ import IconHeader from '@/layouts/IconHeader.astro';
         <span data-animate> 글을 수집하는 것에서 멈추지 않고 작성하려 합니다. </span>
         <br />
       </p>
+    </section>
 
-      <p data-animate>
-        <a href="/posts">Check out our blog ➡️</a>
-      </p>
+    <section class="mx-2 w-full">
+      <PostTypeNav />
+    </section>
+
+    <section class="my-20 flex flex-col items-center">
+      <h2 class="text-xl">최근 포스트</h2>
+      <GridPostsLayout posts={posts} />
     </section>
   </div>
 </DefaultLayout>

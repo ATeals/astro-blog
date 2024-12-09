@@ -1,14 +1,6 @@
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { getCollection } from 'astro:content';
 
-export type CollectionData = CollectionEntry<'dev' | 'docs'> & { href: string };
-
-export type AllCollectionEntry = CollectionEntry<'dev'> | CollectionEntry<'docs'>;
-
-export type TOCSection = {
-  slug: string;
-  text: string;
-  level: 1 | 2 | 3;
-};
+import type { AllCollectionEntry, CollectionData, TOCSection } from './type';
 
 const getAllCollection = async () => {
   const dev = await getCollection('dev');

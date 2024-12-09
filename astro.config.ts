@@ -10,12 +10,13 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import remarkCallout from 'remark-callout';
 import remarkGfm from 'remark-gfm';
 
+import { SITE } from './src/consts';
 import { rehypePrettyCodeOptions } from './src/lib/rehypePrettyCodeOptions';
 import { remarkCalloutOptions } from './src/lib/remarkCalloutOptions';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: SITE.domain,
   markdown: {
     syntaxHighlight: false, // 기본 코드 하이라이트 비활성화,
     remarkPlugins: [remarkGfm, [remarkCallout, remarkCalloutOptions]],
