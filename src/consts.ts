@@ -7,7 +7,7 @@ export const SITE = {
   description: '개발자 Ateals의 블로그입니다.',
   img: '/main.jpg',
   logo: '/logo.png',
-  domain: 'https://ateals.vercel.app'
+  domain: 'https://blog.ateals.site/'
 };
 
 export interface LinkIcon {
