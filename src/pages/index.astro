@@ -2,7 +2,8 @@
 import Image from 'astro/components/Image.astro';
 import Logo from 'public/logo.png';
 
-import PostTypeNav from '@/components/PostTypeNav.astro';
+import PostTypeNav from '@/components/postType/PostTypeNav.astro';
+import { Separator } from '@/components/ui/separator';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
 import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
@@ -36,6 +37,7 @@ const posts = [...document].slice(0, 3);
 
     <section class="my-20 flex flex-col items-center">
       <h2 class="text-xl">최근 포스트</h2>
+      <Separator />
       <GridPostsLayout posts={posts} />
     </section>
   </div>

@@ -1,4 +1,6 @@
 ---
+import PostTypeSmallNav from '@/components/postType/PostTypeSmallNav.astro';
+import { Separator } from '@/components/ui/separator';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
 import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
@@ -17,8 +19,11 @@ const { icon, title, description } = POSTS_TYPES_MAP['docs'];
     <div class="m-5 text-5xl" slot="icon">{icon}</div>
   </IconHeader>
 
-  <p>{description}</p>
-  <hr class="my-5 border-b-[0.1rem] border-gray-300" />
+  <div class="flex w-full items-end justify-between">
+    <p>{description}</p>
+    <PostTypeSmallNav />
+  </div>
+  <Separator />
 
   {posts && <GridPostsLayout posts={posts} />}
 </DefaultLayout>
