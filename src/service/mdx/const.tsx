@@ -1,13 +1,15 @@
 import type { ReactNode } from 'react';
 
-interface PostType {
+export interface PostType {
   title: string;
   icon: ReactNode;
   description: string;
   href: string;
 }
 
-export const POSTS_TYPES_MAP: Record<string, PostType> = {
+export type PostTypeKey = Exclude<keyof typeof POSTS_TYPES_MAP, 'ALL'>;
+
+export const POSTS_TYPES_MAP = {
   ALL: {
     title: 'ALL',
     icon: '📚',
@@ -32,7 +34,7 @@ export const POSTS_TYPES_MAP: Record<string, PostType> = {
     href: 'snippet',
     description: '코드 조각.'
   }
-};
+} as const;
 
 export const POST_TYPES = Object.entries(POSTS_TYPES_MAP).flatMap(([type, value]) => ({
   type,

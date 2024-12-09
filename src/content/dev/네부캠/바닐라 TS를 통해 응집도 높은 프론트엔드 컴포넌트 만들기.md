@@ -1,13 +1,16 @@
 ---
-title: hh바닐라 TS를 통해 응집도 높은 프론트엔드 컴포넌트 만들기
+title: 바닐라 TS를 통해 응집도 높은 프론트엔드 컴포넌트 만들기
 description: 직접 SPA를 만들면서...
 date: 2024-09-11T15:56:00
-img: https://i.imgur.com/O4WIhlv.png
-slug: hh
-icon: 🦆
+tags:
+  - 프론트
+  - TypeScript
+  - 네부캠
+slug: mini-component
 ---
 
 > 전체 코드는 [여기](https://github.com/ATeals/mini-Web-Framework/tree/main/src/.core/fe)에서 확인할 수 있습니다.
+
 
 제가 진행하고 있는 과정에서 요구사항으로 HTML, CSS, JS를 사용해 프론트를 개발할 일이 생겼습니다.
 
@@ -78,7 +81,7 @@ export const Store = <T extends object>(state: T) => {
   const subscribers = new Set<Dispathcher<T>>();
 
   const observable = Object.assign(state, {
-    onChange: (dispatch: Dispathcher<T>) => subscribers.add(dispatch)
+    onChange: (dispatch: Dispathcher<T>) => subscribers.add(dispatch),
   });
 
   Object.keys(observable).forEach((key) => {
@@ -96,7 +99,7 @@ export const Store = <T extends object>(state: T) => {
         const { onChange, ...state } = observable;
 
         subscribers.forEach((fn) => fn(state as T));
-      }
+      },
     });
   });
 
@@ -259,9 +262,9 @@ CSS 속성과 값을 자동완성하기 위한 헬퍼 함수를 만들었습니�
 ```ts
 console.log(
   `${style({
-    color: 'red',
-    fontSize: '20px',
-    fontWeight: 'bold'
+    color: "red",
+    fontSize: "20px",
+    fontWeight: "bold",
   })}`
 );
 
@@ -300,9 +303,12 @@ console.log(
 
 직접 바닐라로 SPA 컴포넌트를 구현해보면서 DOM API에 대해서 더 자세히 알게 된 것 같습니다.
 
+
 ## 데코레이터로 개선하기
 
-[[데코레이터와 메타 프로그래밍 | 데코레이터]]를 학습한 뒤에 데코레이터로 기존 컴포넌트를 개선해보고자 했습니다.
+
+[[데코레이터와 메타 프로그래밍 | 데코레이터]]를 학습한 뒤에 데코레이터로 기존 컴포넌트를 개선해보고자 했습니다. 
+
 
 ### `@DefineComponent`
 
@@ -323,9 +329,11 @@ class Color extends Component<{ color: string }> {
     this.state.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   }
 }
+
 ```
 
 이제 @DefineComponent 데코레이터를 사용하여 컴포넌트를 선언할 수 있으며, 보다 직관적이고 간결하게 표현됩니다.
+
 
 ### `@On()`
 
@@ -338,7 +346,7 @@ class Color extends Component<{ color: string }> {
     return html`<button>${this.state.color}</button>`;
   }
 
-  protected onRender(): void {
+ protected onRender(): void {
     this.target()!.addEventListener('click', () => this.changeColor());
   }
 
@@ -347,6 +355,7 @@ class Color extends Component<{ color: string }> {
     this.state.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   }
 }
+
 ```
 
 이제 `onRender()` 내부에서 이벤트 리스너를 선언하지 않고, `@On()` 데코레이터를 통해 이벤트를 간단하게 등록할 수 있습니다. 이로 인해 이벤트 핸들러를 더 직관적이고 명시적으로 관리할 수 있습니다.
@@ -379,9 +388,12 @@ class ColorList extends Component {
     console.log('green');
   }
 }
+
 ```
 
+
 ![](https://i.imgur.com/C3GBDJ7.gif)
+
 
 ### Root로 이벤트 위임하기
 
@@ -390,6 +402,7 @@ class ColorList extends Component {
 이를 통해 리액트와 비슷한 방식으로, 앱 전역에서 이벤트를 하나의 리스너로 처리합니다. 이는 성능 최적화에 유리할 수 있습니다.
 
 ![](https://i.imgur.com/I07oPOt.png)
+
 
 물론! 모든 이벤트를 Root에서 관리하는 것이 성능 측면에서 이점이 있을지, 아니면 각 컴포넌트에서 개별적으로 이벤트 리스너를 달아주는 방식이 더 나을지는 실제 성능을 추적해보면서 결정해야할 문제인 것 같습니다.
 

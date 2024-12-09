@@ -1,13 +1,13 @@
 export const remarkCalloutOptions = {
   callouts: {
     warning: {
-      svg: `<div>🚨</div>`
+      svg: `<div>⚠️</div>`
     },
     info: {
       svg: `<div>🧑‍💻</div>`
     },
     danger: {
-      svg: `<div>🔥</div>`
+      svg: `<div>🚨</div>`
     },
     note: {
       svg: `<div>🖋️</div>`

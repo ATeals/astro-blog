@@ -9,14 +9,14 @@ const definePostCollection = (options: PostCollectionOptions) =>
     type: 'content',
     schema: z.object({
       title: z.string(),
-      description: z.string(),
       date: z.coerce.date(),
-      updated: z.coerce.date().optional(),
-      img: z.string().optional(),
-      icon: z.string().optional(),
       type: z.string().default(options.type),
-      series: z.string().optional(),
-      tags: z.array(z.string()).optional()
+      description: z.string().optional().nullable(),
+      image: z.string().optional().nullable(),
+      updated: z.coerce.date().optional().nullable(),
+      icon: z.string().optional().nullable(),
+      series: z.string().optional().nullable(),
+      tags: z.array(z.string()).optional().nullable()
     })
   });
 

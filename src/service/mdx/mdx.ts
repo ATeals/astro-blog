@@ -1,12 +1,18 @@
 import { getCollection } from 'astro:content';
 
+import { SITE } from '@/consts';
+
+import { POST_TYPES, type PostTypeKey } from './const';
 import type { AllCollectionEntry, CollectionData, TOCSection } from './type';
 
-const getAllCollection = async () => {
-  const dev = await getCollection('dev');
-  const docs = await getCollection('docs');
+const isCollectionType = (type: string): type is PostTypeKey => {
+  return POST_TYPES.some((postType) => postType.type === type && type !== 'ALL');
+};
 
-  return [...dev, ...docs];
+const getAllCollection = async () => {
+  const posts = await Promise.all(POST_TYPES.map(({ type }) => getCollection(type as PostTypeKey)));
+
+  return posts.flat();
 };
 
 export class PostBuilder {
@@ -25,13 +31,9 @@ export class PostBuilder {
   }
 
   static async getByCollection(name: string) {
-    const collections = PostBuilder.isCollectionType(name) ? await getCollection(name) : await getAllCollection();
+    const collections = isCollectionType(name) ? await getCollection(name) : await getAllCollection();
 
     return new PostBuilder(collections);
-  }
-
-  static isCollectionType(type: string): type is 'dev' | 'docs' {
-    return ['dev', 'docs'].includes(type);
   }
 
   static async getBySeries(series: string) {
@@ -47,7 +49,7 @@ export class PostBuilder {
         ...collection.data,
         date: new Date(collection.data.date),
         description: collection.data.description || collection.body.substring(0, 100),
-        img: collection.data.img || '/images/astro.png'
+        image: collection.data.image || SITE.img
       },
       href: `/posts/${collection.slug}`
     };
@@ -93,7 +95,8 @@ export class PostBuilder {
           .replace(/[*,~]{2,}/g, '')
           .replace(/(?<=\])\((.*?)\)/g, '')
           .replace(/(?<!\S)((http)(s?):\/\/|www\.).+?(?=\s)/g, '')
-          .replaceAll('`', '');
+          .replaceAll('`', '')
+          .replaceAll('[#]', '');
 
         const level = rawHeading.match(/^#+/)?.[0].length ?? 0;
 

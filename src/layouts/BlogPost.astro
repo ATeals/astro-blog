@@ -14,7 +14,7 @@ interface Props {
 
 const {
   post: {
-    data: { title, description, img, date, icon }
+    data: { title, description, image, date, icon }
   },
   prev,
   next
@@ -25,7 +25,7 @@ const { post } = Astro.props;
 
 <!-- 배경 섹션 -->
 <div class="relative h-full shadow-md">
-  <div class="h-[66vh] rounded-b-lg bg-cover bg-fixed bg-center" style=`background-image: url(${img});`>
+  <div class="h-[66vh] rounded-b-lg bg-cover bg-fixed bg-center" style=`background-image: url(${image});`>
     <!-- 카드 섹션 -->
   </div>
   <div class="absolute top-0 h-dvh w-full overflow-y-scroll bg-fixed pt-96 shadow-md dark:shadow-black md:pt-[400px]">
