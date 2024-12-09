@@ -13,7 +13,7 @@ const mostRecent = posts.length > 2 ? posts[0] : null;
 const rest = posts.length > 2 ? posts.slice(1) : posts;
 ---
 
-<section class="px-2 md:px-0" data-animate>
+<section class="px-2 md:px-0" data-animate data-animate-speed="slow">
   {
     mostRecent && (
       <a href={mostRecent.href}>
