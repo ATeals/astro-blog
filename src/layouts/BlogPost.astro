@@ -1,5 +1,6 @@
 ---
 import { AdjacentPostNav } from '@/components/AdjacentPostNav';
+import { BackButton } from '@/components/BackButton';
 import { Giscus } from '@/components/Giscus';
 import { SideMenu } from '@/components/SideMenu';
 import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
@@ -40,6 +41,7 @@ const { post } = Astro.props;
 
       <SideMenu className="top-64">
         <div class="my-5">
+          <BackButton client:only="" />
           <ThemeDropdown client:load />
         </div>
 
