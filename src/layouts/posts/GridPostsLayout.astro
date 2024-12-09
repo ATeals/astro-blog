@@ -11,19 +11,19 @@ const { posts } = Astro.props;
 const [post, ...restPosts] = posts;
 ---
 
-<section data-animate>
+<section class="px-2 md:px-0" data-animate>
   <a href={post.href}>
-    <div class="group/posts my-5 flex h-64 rounded-lg shadow-md transition-shadow duration-200 hover:shadow-lg">
-      <div class="h-full w-1/2 overflow-hidden rounded-lg">
+    <div class="group/posts my-5 rounded-lg shadow-md transition-shadow duration-200 hover:shadow-lg md:flex">
+      <div class="h-full w-full overflow-hidden rounded-lg md:w-2/3">
         <img
           alt={post.data.title}
           class="h-full w-full object-cover transition-all duration-200 group-hover/posts:scale-110"
           src={post.data.img}
         />
       </div>
-      <div class="relative p-5">
+      <div class="p-2 md:p-5">
         <h4 class="text-xl font-normal group-hover/posts:text-primary-xl">{post.data.title}</h4>
-        <p class="absolute bottom-0 text-sm">
+        <p class="text-sm">
           <FormattedDate date={post.data.date} />
         </p>
       </div>
@@ -32,19 +32,22 @@ const [post, ...restPosts] = posts;
   <ul class="grid gap-2 md:grid-cols-2">
     {
       restPosts.map((post) => (
-        <li class="group/posts">
+        <li class="group/posts rounded-lg shadow-md transition-shadow duration-200 hover:shadow-lg">
           <a href={post.href}>
-            <div class="h-36 overflow-hidden rounded-lg">
+            <div class="h-auto overflow-hidden rounded-lg md:h-36">
               <img
                 alt={post.data.title}
                 class="h-full w-full object-cover transition-all duration-200 group-hover/posts:scale-110"
                 src={post.data.img}
               />
             </div>
-            <h4 class="text-lg font-normal group-hover/posts:text-primary-xl">{post.data.title}</h4>
-            <p class="text-sm">
-              <FormattedDate date={post.data.date} />
-            </p>
+
+            <div class="p-2">
+              <h4 class="text-lg font-normal group-hover/posts:text-primary-xl">{post.data.title}</h4>
+              <p class="text-sm">
+                <FormattedDate date={post.data.date} />
+              </p>
+            </div>
           </a>
         </li>
       ))

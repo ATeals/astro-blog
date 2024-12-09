@@ -4,18 +4,18 @@ import IconHeader from '@/layouts/IconHeader.astro';
 import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
 import { Document } from '@/service/mdx';
 
-const document = await Document.getByCollection('dev');
+const document = await Document.getByCollection('docs');
 
 const posts = [...document];
 ---
 
 <DefaultLayout>
-  <IconHeader title="DEV">
-    <div class="m-5 text-5xl" slot="icon">👾</div>
+  <IconHeader title="DOCS">
+    <div class="m-5 text-5xl" slot="icon">💻</div>
   </IconHeader>
 
-  <p>개발하면서 느낀 인사이트를 남깁니다.</p>
+  <p>유용한 자료들을 보기 편한 형태로 남깁니다.</p>
   <hr class="my-5 border-b-[0.1rem] border-gray-300" />
 
-  <GridPostsLayout posts={posts} />
+  {posts && <GridPostsLayout posts={posts} />}
 </DefaultLayout>
