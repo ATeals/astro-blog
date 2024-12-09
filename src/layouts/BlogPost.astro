@@ -3,12 +3,12 @@ import type { CollectionEntry } from 'astro:content';
 
 type Props = CollectionEntry<'dev'>['data'];
 
-const { title, description, img, date, icon } = Astro.props
+const { title, description, img, date, icon } = Astro.props;
 
 ---
 
 <article>
-				<!-- 고정 배경 섹션 -->
+	<!-- 고정 배경 섹션 -->
 	<div class="bg-fixed bg-center bg-cover w-full min-h-[80vh] bg-no-repeat" style=`background-image: url(${img});` />
 
 	<!-- 내용 섹션 -->

@@ -19,7 +19,7 @@ export default [
   },
   pluginJs.configs.recommended,
   ...pluginTs.configs.recommended,
-  ...eslintPluginAstro.configs.recommended,
+  ...eslintPluginAstro.configs['all'],
   {
     rules: {
       'no-undef': 'off',

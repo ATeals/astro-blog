@@ -1,21 +1,20 @@
 ---
-
 import { type CollectionEntry } from 'astro:content';
 
-import { MDXWrapper } from "@/components/MDXWrapper";
+import { MDXWrapper } from '@/components/MDXWrapper';
 import BlogPost from '@/layouts/BlogPost.astro';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { Document } from '@/service/mdx';
 
 export async function getStaticPaths() {
-	const document = await Document.getAll(); 
+  const document = await Document.getAll();
 
-	const post = [...document]
+  const post = [...document];
 
-	return post.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  return post.map((post) => ({
+    params: { slug: post.slug },
+    props: post
+  }));
 }
 
 type Props = CollectionEntry<'dev'>;
@@ -26,9 +25,9 @@ const { Content } = await post.render();
 ---
 
 <DefaultLayout>
-	<BlogPost {...post.data}>
-		<MDXWrapper>
-			<Content />
-		</MDXWrapper>
-	</BlogPost>	
+  <BlogPost {...post.data}>
+    <MDXWrapper>
+      <Content />
+    </MDXWrapper>
+  </BlogPost>
 </DefaultLayout>
