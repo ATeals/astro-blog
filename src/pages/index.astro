@@ -2,6 +2,7 @@
 import Image from 'astro/components/Image.astro';
 import Logo from 'public/logo.png';
 
+import { AnimatedCounter } from '@/components/AnimatedCounter';
 import PostTypeNav from '@/components/postType/PostTypeNav.astro';
 import SocialLink from '@/components/SocialLink.astro';
 import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
@@ -14,6 +15,8 @@ import { PostBuilder } from '@/service/mdx';
 const document = await PostBuilder.getAll();
 
 const posts = [...document].slice(0, 3);
+
+const postCount = [...document].length;
 ---
 
 <DefaultLayout>
@@ -27,7 +30,13 @@ const posts = [...document].slice(0, 3);
     </IconHeader>
   </div>
 
-  <section class="my-10 flex w-full flex-col items-center text-center">
+  <section class="my-20 flex w-full items-center justify-center gap-5">
+    <div class="flex w-1/3 flex-col items-end text-center">
+      <h1>총 포스트 개수</h1>
+      <AnimatedCounter client:load end={postCount} />
+    </div>
+    <Separator className="h-20" orientation="vertical" />
+
     <p data-animate>
       <span data-animate>코드를 즐기며, 커피를 좋아합니다.</span>
       <br />

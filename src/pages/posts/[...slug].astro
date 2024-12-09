@@ -26,7 +26,13 @@ const { prev, next } = await PostBuilder.getAdjacentType(post);
 const { Content } = await post.render();
 ---
 
-<DefaultLayout>
+<DefaultLayout
+  seo={{
+    title: `${post.data.title}`,
+    description: post.data.description,
+    image: post.data.image
+  }}
+>
   <BlogPost next={next} post={post} prev={prev}>
     <MDXWrapper>
       <Content />

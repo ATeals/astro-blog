@@ -16,7 +16,13 @@ const posts = [...document];
 const { icon, title, description } = POSTS_TYPES_MAP['ALL'];
 ---
 
-<DefaultLayout>
+<DefaultLayout
+  seo={{
+    title: `${title} | ATeals`,
+    description,
+    image: '/logo.png'
+  }}
+>
   <IconHeader title={title}>
     <div class="m-5 text-5xl" slot="icon">{icon}</div>
   </IconHeader>
