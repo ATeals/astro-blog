@@ -1,6 +1,8 @@
 ---
 import { AdjacentPostNav } from '@/components/AdjacentPostNav';
 import { Giscus } from '@/components/Giscus';
+import { SideMenu } from '@/components/SideMenu';
+import { Toc } from '@/components/Toc';
 import type { CollectionData } from '@/service/mdx';
 
 interface Props {
@@ -9,9 +11,15 @@ interface Props {
   prev?: CollectionData;
 }
 
-const { title, description, img, date, icon } = Astro.props.post.data;
+const {
+  post: {
+    data: { title, description, img, date, icon }
+  },
+  prev,
+  next
+} = Astro.props;
 
-const { prev, next } = Astro.props;
+const { post } = Astro.props;
 ---
 
 <!-- 배경 섹션 -->
@@ -28,6 +36,11 @@ const { prev, next } = Astro.props;
           </div>
         )
       }
+
+      <SideMenu className="top-64">
+        <Toc client:load post={post} />
+      </SideMenu>
+
       <div class="flex flex-col items-center text-center">
         <h1 class="mb-4 text-2xl font-bold">{title}</h1>
         <p>{description}</p>

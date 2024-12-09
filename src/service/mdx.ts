@@ -4,6 +4,12 @@ export type CollectionData = CollectionEntry<'dev' | 'docs'> & { href: string };
 
 export type AllCollectionEntry = CollectionEntry<'dev'> | CollectionEntry<'docs'>;
 
+export type TOCSection = {
+  slug: string;
+  text: string;
+  level: 1 | 2 | 3;
+};
+
 const getAllCollection = async () => {
   const dev = await getCollection('dev');
   const docs = await getCollection('docs');
@@ -83,6 +89,34 @@ export class PostBuilder {
       prev: collections[index - 1],
       next: collections[index + 1]
     };
+  }
+
+  static parseToc(source: string) {
+    return source
+      .split('\n')
+      .filter((line) => line.match(/(^#{1,3})\s/))
+      .reduce<TOCSection[]>((ac, rawHeading) => {
+        const removeMdx = rawHeading
+          .replace(/^##*\s/, '')
+          .replace(/[*,~]{2,}/g, '')
+          .replace(/(?<=\])\((.*?)\)/g, '')
+          .replace(/(?<!\S)((http)(s?):\/\/|www\.).+?(?=\s)/g, '')
+          .replaceAll('`', '');
+
+        const level = rawHeading.match(/^#+/)?.[0].length ?? 0;
+
+        const section = {
+          slug: removeMdx
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣 -]/g, '')
+            .replace(/\s/g, '-'),
+          text: removeMdx.replace(/\[(.*?)\]\(.*?\)/g, '$1'),
+          level: level as 1 | 2 | 3
+        };
+
+        return [...ac, section];
+      }, []);
   }
 
   *[Symbol.iterator]() {

@@ -1,5 +1,6 @@
 // @ts-check
 // @ts-check
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
@@ -18,13 +19,13 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false, // 기본 코드 하이라이트 비활성화,
     remarkPlugins: [remarkGfm, [remarkCallout, remarkCalloutOptions]],
-    rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions]]
+    rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions], rehypeHeadingIds]
   },
   integrations: [
     mdx({
       syntaxHighlight: false, // 기본 코드 하이라이트 비활성화,
       remarkPlugins: [remarkGfm, [remarkCallout, remarkCalloutOptions]],
-      rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions]]
+      rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions], rehypeHeadingIds]
     }),
     sitemap(),
     tailwind({
