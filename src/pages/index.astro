@@ -3,6 +3,7 @@ import Image from 'astro/components/Image.astro';
 import Logo from 'public/logo.png';
 
 import PostTypeNav from '@/components/postType/PostTypeNav.astro';
+import SocialLink from '@/components/SocialLink.astro';
 import { Separator } from '@/components/ui/separator';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
@@ -16,11 +17,12 @@ const posts = [...document].slice(0, 3);
 
 <DefaultLayout>
   <div class="flex w-full flex-col items-start justify-center" data-animate data-animate-speed="slow">
-    <IconHeader title="POSTS">
+    <IconHeader title="ATeals">
       <Image alt="Logo" class="h-24 w-24" slot={'icon'} src={Logo} />
+      <SocialLink />
     </IconHeader>
 
-    <section class="mb-10 flex w-full flex-col items-center text-center">
+    <section class="my-10 flex w-full flex-col items-center text-center">
       <p data-animate>
         <span data-animate>코드를 즐기며, 커피를 좋아합니다.</span>
         <br />

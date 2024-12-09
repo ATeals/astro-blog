@@ -1,5 +1,6 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+import type { IconType } from 'react-icons';
+import { IoLogoGithub } from 'react-icons/io';
+import { IoMdMail } from 'react-icons/io';
 
 export const SITE = {
   title: 'Ateals Blog',
@@ -8,3 +9,22 @@ export const SITE = {
   logo: '/logo.png',
   domain: 'https://ateals.vercel.app'
 };
+
+export interface LinkIcon {
+  name: string;
+  href: string;
+  Icon: string | IconType;
+}
+
+export const SOCIAL_LINKS: LinkIcon[] = [
+  {
+    name: 'Github',
+    href: 'https://github.com/ATeals',
+    Icon: IoLogoGithub
+  },
+  {
+    name: 'Mail',
+    href: 'mailto:ateals@icloud.com',
+    Icon: IoMdMail
+  }
+];

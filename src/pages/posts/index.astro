@@ -4,20 +4,22 @@ import { Separator } from '@/components/ui/separator';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
 import GridPostsLayout from '@/layouts/posts/GridPostsLayout.astro';
-import { PostBuilder } from '@/service/mdx';
+import { PostBuilder, POSTS_TYPES_MAP } from '@/service/mdx';
 
 const document = await PostBuilder.getAll();
 
 const posts = [...document];
+
+const { icon, title, description } = POSTS_TYPES_MAP['ALL'];
 ---
 
 <DefaultLayout>
-  <IconHeader title="POSTS">
-    <div class="m-5 text-5xl" slot="icon">📚</div>
+  <IconHeader title={title}>
+    <div class="m-5 text-5xl" slot="icon">{icon}</div>
   </IconHeader>
 
   <div class="flex w-full items-end justify-between">
-    <p>블로그의 모든 포스트 모음</p>
+    <p>{description}</p>
     <PostTypeSmallNav />
   </div>
   <Separator />
