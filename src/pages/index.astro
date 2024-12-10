@@ -5,7 +5,7 @@ import Logo from 'public/logo.png';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import PostTypeNav from '@/components/postType/PostTypeNav.astro';
 import SocialLink from '@/components/SocialLink.astro';
-import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
+import { ThemeButton } from '@/components/Theme/ThemeButton';
 import { Separator } from '@/components/ui/separator';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import IconHeader from '@/layouts/IconHeader.astro';
@@ -25,7 +25,7 @@ const postCount = [...document].length;
       <Image alt="Logo" class="h-24 w-24" slot={'icon'} src={Logo} />
       <SocialLink />
       <div class="mt-5">
-        <ThemeDropdown client:only="react" />
+        <ThemeButton client:only="react" />
       </div>
     </IconHeader>
   </div>
