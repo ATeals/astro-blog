@@ -21,7 +21,7 @@ export const LocationNav = (props: LocationNavProps) => {
       <Breadcrumb className="inline-flex min-h-6 w-max min-w-full whitespace-nowrap bg-white px-2 font-normal transition-transform duration-300 ease-in-out group-hover:translate-y-0 dark:bg-dark-bg md:translate-y-full">
         <BreadcrumbList className="inline-flex items-center">
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink href="/">home</BreadcrumbLink>
           </BreadcrumbItem>
           {pathMap.map((path, index) => (
             <Fragment key={index}>
