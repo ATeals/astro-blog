@@ -1,7 +1,10 @@
 ---
+import readingTime from 'reading-time';
+
 import { AdjacentPostNav } from '@/components/AdjacentPostNav';
 import { BackButton } from '@/components/BackButton';
 import { Giscus } from '@/components/Giscus';
+import { ReadingTime } from '@/components/ReadingTime';
 import { SideMenu } from '@/components/SideMenu';
 import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
 import { Time } from '@/components/Time';
@@ -24,6 +27,8 @@ const {
 } = Astro.props;
 
 const { post } = Astro.props;
+
+const time = Math.ceil(readingTime(post.body, { wordsPerMinute: 300 }).minutes);
 ---
 
 <!-- 배경 섹션 -->
@@ -43,7 +48,7 @@ const { post } = Astro.props;
 
       <SideMenu className="top-64">
         <div class="my-5">
-          <BackButton client:only="" />
+          <BackButton client:only="react" />
           <ThemeDropdown client:load />
         </div>
 
@@ -52,9 +57,10 @@ const { post } = Astro.props;
 
       <div class="flex flex-col items-center text-center">
         <h1 class="mb-4 text-2xl font-bold">{title}</h1>
+        <ReadingTime client:load time={time} />
         <Time date={date} />
 
-        <ul class="pb-2">
+        <ul class="pt-5">
           {post.data.tags?.map((tag) => <Badge className="text-[0.5rem] mr-1">{tag}</Badge>)}
         </ul>
 
