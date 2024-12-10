@@ -25,7 +25,7 @@
 }
 
 .callout.note {
-  @apply border-l-[#0070f3] dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
+  @apply border-l-green-700 dark:bg-dark-highlight dark:shadow-md dark:shadow-black;
 }
 
 .callout.warning {
