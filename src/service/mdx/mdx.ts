@@ -80,8 +80,8 @@ export class PostBuilder {
     const index = collections.findIndex((collection) => collection.id === post.id);
 
     return {
-      prev: collections[index - 1],
-      next: collections[index + 1]
+      prev: collections[index + 1],
+      next: collections[index - 1]
     };
   }
 
