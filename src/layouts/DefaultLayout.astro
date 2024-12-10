@@ -24,12 +24,12 @@ const { seo } = Astro.props;
     <ThemeScript />
   </head>
 
-  <body
-    class="mx-auto min-h-dvh font-sans font-light transition-colors duration-200 dark:bg-dark-bg dark:text-gray-300"
-  >
+  <body class="font-sans font-light transition-colors duration-200 dark:bg-dark-bg dark:text-gray-300">
     <main class="mx-auto min-h-dvh max-w-2xl" data-animate data-animate-speed="fast">
       <slot />
     </main>
+
+    <slot name="side" />
 
     <LocationNav client:only="react" path={Astro.url.pathname} />
 

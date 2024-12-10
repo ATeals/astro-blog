@@ -2,13 +2,9 @@
 import readingTime from 'reading-time';
 
 import { AdjacentPostNav } from '@/components/AdjacentPostNav';
-import { BackButton } from '@/components/BackButton';
 import { Giscus } from '@/components/Giscus';
 import { ReadingTime } from '@/components/ReadingTime';
-import { SideMenu } from '@/components/SideMenu';
-import { ThemeDropdown } from '@/components/Theme/ThemeDropdown';
 import { Time } from '@/components/Time';
-import { Toc } from '@/components/Toc';
 import { Badge } from '@/components/ui/badge';
 import type { CollectionData } from '@/service/mdx';
 
@@ -31,48 +27,50 @@ const { post } = Astro.props;
 const time = Math.ceil(readingTime(post.body, { wordsPerMinute: 300 }).minutes);
 ---
 
-<!-- 배경 섹션 -->
-<div class="relative h-full shadow-md">
-  <div class="h-[66vh] rounded-b-lg bg-cover bg-fixed bg-center" style=`background-image: url(${image});`>
-    <!-- 카드 섹션 -->
-  </div>
-  <div class="absolute top-0 h-dvh w-full overflow-y-scroll bg-fixed pt-96 shadow-md dark:shadow-black md:pt-[400px]">
-    <div class="absolute w-full rounded-lg bg-white p-2 pt-16 transition-colors duration-200 dark:bg-dark-bg">
-      {
-        icon && (
-          <div class="absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 transform items-center justify-center rounded-full bg-zinc-100 text-5xl shadow-md">
-            {icon}
-          </div>
-        )
-      }
+<section class="relative transform-none">
+  <article class="relative mb-20 min-h-screen shadow-md">
+    {/* Sticky background section */}
+    <div class="sticky top-0 h-[66vh] w-full overflow-hidden">
+      <div
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${image})`
+        }}
+      >
+      </div>
+    </div>
 
-      <SideMenu className="top-64">
-        <div class="my-5">
-          <BackButton client:only="react" />
-          <ThemeDropdown client:only="react" />
+    {/* Scrolling content */}
+    <div class="relative mx-auto max-w-2xl">
+      {/* Post header */}
+      <div class="w-full rounded-lg bg-white p-2 pt-16 shadow-md transition-colors duration-200 dark:bg-dark-bg">
+        {
+          icon && (
+            <div class="absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 transform items-center justify-center rounded-full bg-zinc-100 text-5xl shadow-md">
+              {icon}
+            </div>
+          )
+        }
+
+        <div class="flex flex-col items-center text-center">
+          <h1 class="mb-4 text-2xl font-bold">{title}</h1>
+          <ReadingTime client:load time={time} />
+          <Time date={date} />
+
+          <ul class="pt-5">
+            {post.data.tags?.map((tag) => <Badge className="text-[0.5rem] mr-1">{tag}</Badge>)}
+          </ul>
+
+          <hr class="my-10 w-full border-b-[0.01rem] border-gray-500" />
+        </div>
+        <slot />
+
+        <div class="my-10">
+          <AdjacentPostNav next={next} prev={prev} />
         </div>
 
-        <Toc client:load post={post} />
-      </SideMenu>
-
-      <div class="flex flex-col items-center text-center">
-        <h1 class="mb-4 text-2xl font-bold">{title}</h1>
-        <ReadingTime client:load time={time} />
-        <Time date={date} />
-
-        <ul class="pt-5">
-          {post.data.tags?.map((tag) => <Badge className="text-[0.5rem] mr-1">{tag}</Badge>)}
-        </ul>
-
-        <hr class="my-10 w-full border-b-[0.01rem] border-gray-500" />
+        <Giscus client:load />
       </div>
-      <slot />
-
-      <div class="my-10">
-        <AdjacentPostNav next={next} prev={prev} />
-      </div>
-
-      <Giscus client:load />
     </div>
-  </div>
-</div>
+  </article>
+</section>
