@@ -1,5 +1,6 @@
 ---
-import FormattedDate from '@/components/FormattedDate.astro';
+import { TagList } from '@/components/TagList';
+import { Time } from '@/components/Time';
 import type { CollectionData } from '@/service/mdx';
 
 interface Props {
@@ -25,10 +26,12 @@ const rest = posts.length > 2 ? posts.slice(1) : posts;
               src={mostRecent.data.image}
             />
           </div>
-          <div class="p-2 md:p-5">
+          <div class="relative p-2 md:p-5">
             <h4 class="text-xl font-normal group-hover/posts:text-primary-xl">{mostRecent.data.title}</h4>
-            <p class="text-sm">
-              <FormattedDate date={mostRecent.data.date} />
+
+            <TagList className="pb-2" tags={mostRecent.data.tags} />
+            <p class="bottom-0 w-full text-sm md:absolute">
+              <Time date={mostRecent.data.date} />
             </p>
           </div>
         </div>
@@ -50,8 +53,11 @@ const rest = posts.length > 2 ? posts.slice(1) : posts;
 
             <div class="p-2">
               <h4 class="text-lg font-normal group-hover/posts:text-primary-xl">{post.data.title}</h4>
+
+              <TagList className="pb-2" tags={post.data.tags} />
+
               <p class="text-sm">
-                <FormattedDate date={post.data.date} />
+                <Time date={post.data.date} />
               </p>
             </div>
           </a>
