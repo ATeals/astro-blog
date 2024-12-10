@@ -21,7 +21,6 @@ const { title = SITE.title, description = SITE.description, image = SITE.img } =
 <meta content={Astro.generator} name="generator" />
 
 <!-- Favicon -->
-<link href="/android-icon-192x192.png" rel="icon" sizes="192x192" type="image/png" />
 <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
 <link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
 <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
@@ -33,6 +32,7 @@ const { title = SITE.title, description = SITE.description, image = SITE.img } =
 <title>{title}</title>
 <meta content={title} name="title" />
 <meta content={description} name="description" />
+<meta content={SITE.author.name} http-equiv="Author" />
 
 <!-- Open Graph / Facebook -->
 <meta content="website" property="og:type" />

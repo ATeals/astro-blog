@@ -7,7 +7,12 @@ export const SITE = {
   description: '개발자 Ateals의 블로그입니다.',
   img: '/main.jpg',
   logo: '/logo.png',
-  domain: 'https://blog.ateals.site/'
+  domain: 'https://blog.ateals.site/',
+  author: {
+    name: 'Ateals',
+    logo: '/logo.png',
+    github: 'https://github.com/ATeals'
+  }
 };
 
 export interface LinkIcon {
