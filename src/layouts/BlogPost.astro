@@ -49,7 +49,7 @@ const time = Math.ceil(readingTime(post.body, { wordsPerMinute: 300 }).minutes);
       <SideMenu className="top-64">
         <div class="my-5">
           <BackButton client:only="react" />
-          <ThemeDropdown client:load />
+          <ThemeDropdown client:only="react" />
         </div>
 
         <Toc client:load post={post} />

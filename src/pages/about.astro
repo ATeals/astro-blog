@@ -14,7 +14,7 @@ import IconHeader from '@/layouts/IconHeader.astro';
       <Image alt="Logo" class="h-24 w-24" slot={'icon'} src={Logo} />
       <SocialLink />
       <div class="mt-5">
-        <ThemeDropdown client:load />
+        <ThemeDropdown client:only="react" />
       </div>
     </IconHeader>
   </div>

@@ -36,7 +36,7 @@ const { icon, title, description } = POSTS_TYPES_MAP[type];
 
   <SideMenu className="top-60 py-2" client:load>
     <BackButton client:only="react" />
-    <ThemeDropdown client:load />
+    <ThemeDropdown client:only="react" />
   </SideMenu>
 
   <div class="flex w-full items-end justify-between">
