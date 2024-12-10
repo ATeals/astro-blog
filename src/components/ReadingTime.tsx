@@ -12,7 +12,7 @@ export function ReadingTime({ time }: { time: number }) {
     <HoverCard>
       <HoverCardTrigger asChild>
         <Button variant="link">
-          <span className="text-base">
+          <span className="text-base font-light">
             {time} <TimeIcon time={time} />
           </span>
         </Button>

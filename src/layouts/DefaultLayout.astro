@@ -4,6 +4,7 @@ import '@/styles/animation.css';
 
 import BaseHead from '@/components/BaseHead.astro';
 import Footer from '@/components/Footer.astro';
+import { LocationNav } from '@/components/LocationNav';
 import PretendardFont from '@/components/PretendardFont.astro';
 import ThemeScript from '@/components/Theme/ThemeScript.astro';
 import type { SEOProps } from '@/type';
@@ -29,6 +30,9 @@ const { seo } = Astro.props;
     <main class="mx-auto min-h-dvh max-w-2xl" data-animate data-animate-speed="fast">
       <slot />
     </main>
+
+    <LocationNav client:only="react" path={Astro.url.pathname} />
+
     <Footer />
   </body>
 </html>

@@ -16,8 +16,6 @@ export const themeStore = persistentAtom<ThemeValue>(STORAGE_THEME_KEY, THEME_MA
 
 export const initThemeStoreSubscribe = () => {
   const applyTheme = (theme: ThemeValue) => {
-    console.log('applyTheme', theme, document.documentElement);
-
     if (theme === THEME_MAP.dark) {
       document.documentElement.classList.add('dark');
 
