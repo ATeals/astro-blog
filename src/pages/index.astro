@@ -3,6 +3,7 @@ import Image from 'astro/components/Image.astro';
 import Logo from 'public/logo.png';
 
 import { AnimatedCounter } from '@/components/AnimatedCounter';
+import { PagefindButton } from '@/components/CMD/PagefindButton';
 import PostTypeNav from '@/components/postType/PostTypeNav.astro';
 import SocialLink from '@/components/SocialLink.astro';
 import { ThemeButton } from '@/components/Theme/ThemeButton';
@@ -24,8 +25,9 @@ const postCount = [...document].length;
     <IconHeader title="ATeals">
       <Image alt="Logo" class="h-24 w-24" slot={'icon'} src={Logo} />
       <SocialLink />
-      <div class="mt-5">
+      <div class="mt-5 flex items-center">
         <ThemeButton client:only="react" />
+        <PagefindButton client:only="react" />
       </div>
     </IconHeader>
   </div>
