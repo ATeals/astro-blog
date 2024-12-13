@@ -31,4 +31,4 @@ const createPostSitemap = ({ posts }: { posts: CollectionData[] }) => {
 };
 
 const createPostTypeSitemap = () =>
-  POST_TYPES.map(({ href }) => `<url><loc>${SITE.domain}/${href}</loc></url>`).join('\n');
+  POST_TYPES.map(({ href }) => `<url><loc>${SITE.domain}${href}</loc></url>`).join('\n');
