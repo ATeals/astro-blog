@@ -15,6 +15,10 @@ const getAllCollection = async () => {
   return posts.flat();
 };
 
+const isUrlString = (str?: string | null) => {
+  return /^(http|https):\/\//.test(str || '');
+};
+
 export class PostBuilder {
   public collections: CollectionData[];
 
@@ -51,6 +55,7 @@ export class PostBuilder {
         description: collection.data.description || collection.body.substring(0, 100),
         image: collection.data.image || SITE.img
       },
+      iconType: isUrlString(collection.data.icon) ? 'url' : 'string',
       href: `/posts/${collection.slug}`
     };
   }

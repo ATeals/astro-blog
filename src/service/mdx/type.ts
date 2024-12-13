@@ -2,7 +2,7 @@ import { type CollectionEntry } from 'astro:content';
 
 export type CollectionData = CollectionEntry<'dev' | 'docs' | 'snippet'> & {
   data: { image: string; description: string };
-} & { href: string };
+} & { href: string; iconType: string };
 
 export type AllCollectionEntry = CollectionEntry<'dev'> | CollectionEntry<'docs'> | CollectionEntry<'snippet'>;
 

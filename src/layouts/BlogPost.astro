@@ -3,6 +3,7 @@ import readingTime from 'reading-time';
 
 import { AdjacentPostNav } from '@/components/AdjacentPostNav';
 import { Giscus } from '@/components/Giscus';
+import { PostIcon } from '@/components/PostIcon';
 import { ReadingTime } from '@/components/ReadingTime';
 import { Time } from '@/components/Time';
 import { Badge } from '@/components/ui/badge';
@@ -44,13 +45,7 @@ const time = Math.ceil(readingTime(post.body, { wordsPerMinute: 300 }).minutes);
     <div class="relative mx-auto max-w-2xl">
       {/* Post header */}
       <div class="w-full rounded-lg bg-white p-2 pt-16 shadow-md transition-colors duration-200 dark:bg-dark-bg">
-        {
-          icon && (
-            <div class="absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 transform items-center justify-center rounded-full bg-zinc-100 text-5xl shadow-md">
-              {icon}
-            </div>
-          )
-        }
+        <PostIcon post={post} />
 
         <div class="flex flex-col items-center text-center">
           <h1 class="mb-4 text-2xl font-bold">{title}</h1>
