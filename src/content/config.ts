@@ -16,7 +16,7 @@ const definePostCollection = (options: PostCollectionOptions) =>
       updated: z.coerce.date().optional().nullable(),
       icon: z.string().optional().nullable(),
       series: z.string().optional().nullable(),
-      tags: z.array(z.string()).optional().nullable()
+      tags: z.array(z.string()).default([]).optional()
     })
   });
 
