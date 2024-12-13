@@ -4,7 +4,7 @@ import '@/styles/callout.css';
 import { cn } from '@/lib/utils';
 
 export const MDXWrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <div className={cn(MARKDOWN_STYLE_CLASSNAME, className)} data-animate>
+  <div className={cn(MARKDOWN_STYLE_CLASSNAME, className, 'prose-h3:first-of-type:text-red-300')} data-animate>
     {children}
   </div>
 );
@@ -25,11 +25,11 @@ const MARKDOWN_STYLES = {
     'prose-p:mb-8'
   ],
   headings: [
-    'prose-headings:mt-32 prose-headings:mb-8',
+    'prose-headings:mb-8',
     'prose-h1:text-2xl',
-    'prose-h2:text-xl',
+    'prose-h2:text-xl prose-h2:mt-40 prose-h2:border-b prose-h2:border-gray-300',
     'prose-h2:font-semibold',
-    'prose-h3:text-base prose-h3:mt-24'
+    'prose-h3:text-base prose-h3:font-bold prose-h3:mt-36'
   ],
   blockquote: [
     'prose-quoteless',
@@ -67,7 +67,13 @@ const MARKDOWN_STYLES = {
   codeBlock: ['prose-pre:shadow-lg', 'dark:prose-pre:shadow-black', 'prose-pre:p-2', 'prose-pre:bg-transparent'],
   image: ['prose-img:mx-auto', 'prose-img:rounded-md', 'prose-img:shadow-lg', 'dark:prose-img:shadow-black'],
   list: ['prose-li:text-gray-700', 'dark:prose-li:text-gray-300', 'prose-li:font-[350]'],
-  table: ['prose-th:text-start']
+  table: ['prose-th:text-start'],
+  link: [
+    'prose-a:text-gray-500 hover:prose-a:no-underline hover:prose-a:text-primary-md prose-a:transition-all prose-a:duration-500',
+    'prose-a:relative',
+    'prose-a:before:absolute prose-a:before:bottom-0 prose-a:before:left-0 prose-a:before:w-0 prose-a:before:h-[1px] prose-a:before:bg-primary-md prose-a:before:transition-all prose-a:before:duration-500',
+    'hover:prose-a:before:w-full'
+  ]
 } as const;
 
 const MARKDOWN_STYLE_CLASSNAME = Object.values(MARKDOWN_STYLES)
