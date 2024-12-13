@@ -3,6 +3,7 @@ import '@/styles/global.css';
 import '@/styles/animation.css';
 
 import BaseHead from '@/components/BaseHead.astro';
+import PagefindScript from '@/components/CMD/pagefindScript.astro';
 import Footer from '@/components/Footer.astro';
 import { LocationNav } from '@/components/LocationNav';
 import PretendardFont from '@/components/PretendardFont.astro';
@@ -34,5 +35,7 @@ const { seo } = Astro.props;
     <LocationNav client:only="react" path={Astro.url.pathname} />
 
     <Footer />
+
+    <PagefindScript />
   </body>
 </html>

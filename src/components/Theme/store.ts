@@ -7,6 +7,16 @@ export const THEME_MAP = {
   system: undefined
 } as const;
 
+export const applyNextTheme = (theme: ThemeValue) => {
+  return theme ? (theme === 'light' ? 'dark' : undefined) : 'light';
+};
+
+export const NEXT_THEME_MAP = {
+  light: 'dark',
+  dark: 'system',
+  system: 'light'
+} as const;
+
 export type ThemeKey = keyof typeof THEME_MAP;
 export type ThemeValue = (typeof THEME_MAP)[ThemeKey];
 
