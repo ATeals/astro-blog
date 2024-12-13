@@ -7,7 +7,7 @@ tags:
   - React
   - 네부캠
 date: 2024-12-13T14:28
-updated:
+updated: 2024-12-13T18:09
 series:
 slug: effective-query-key
 ---

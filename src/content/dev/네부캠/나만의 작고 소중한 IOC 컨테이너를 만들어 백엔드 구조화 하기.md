@@ -3,6 +3,7 @@ title: 나만의 작고 소중한 IOC 컨테이너를 만들어 백엔드 구조
 description: express를 그냥 사용하라고....? 그게 뭐예요? 아니 어떻게 하는 건데요...
 image: https://i.imgur.com/Yr3c8YF.png
 date: 2024-09-12T18:09
+updated: 2024-12-13T18:09
 tags:
   - TypeScript
   - JavaScript

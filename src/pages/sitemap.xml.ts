@@ -23,6 +23,7 @@ export async function GET() {
 
 const createPostSitemap = ({ posts }: { posts: CollectionData[] }) => {
   return posts
+    .sort((a, b) => ((a.data.updated ?? a.data.date) > (b.data.updated ?? b.data.date) ? -1 : 1))
     .map((post) => {
       const lastMod = (post.data.updated ?? post.data.date).toISOString();
       return `<url><loc>${SITE.domain}${post.href}/</loc><lastmod>${lastMod}</lastmod></url>`;
