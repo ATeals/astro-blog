@@ -8,7 +8,7 @@ export async function GET() {
   const result = `
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${SITE.domain}/</loc></url>
+  <url><loc>${SITE.domain}</loc></url>
   ${createPostTypeSitemap()}
   ${createPostSitemap({ posts })}
 </urlset>
@@ -26,7 +26,7 @@ const createPostSitemap = ({ posts }: { posts: CollectionData[] }) => {
     .sort((a, b) => ((a.data.updated ?? a.data.date) > (b.data.updated ?? b.data.date) ? -1 : 1))
     .map((post) => {
       const lastMod = (post.data.updated ?? post.data.date).toISOString();
-      return `<url><loc>${SITE.domain}${post.href}/</loc><lastmod>${lastMod}</lastmod></url>`;
+      return `<url><loc>${new URL(post.href, SITE.domain).href}/</loc><lastmod>${lastMod}</lastmod></url>`;
     })
     .join('\n');
 };

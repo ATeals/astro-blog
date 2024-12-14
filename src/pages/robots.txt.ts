@@ -6,7 +6,7 @@ const getRobotsTxt = () => `
 User-agent: *
 Allow: /
 
-Sitemap: ${SITE.domain}sitemap.xml
+Sitemap: ${new URL(`/sitemap.xml`, SITE.domain).href}
 `;
 
 export const GET: APIRoute = () => {

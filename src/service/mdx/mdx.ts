@@ -56,7 +56,7 @@ export class PostBuilder {
         image: collection.data.image || SITE.img
       },
       iconType: isUrlString(collection.data.icon) ? 'url' : 'string',
-      href: `posts/${collection.slug}`
+      href: `/posts/${collection.slug}`
     };
   }
 
