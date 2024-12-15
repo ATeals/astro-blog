@@ -70,12 +70,6 @@ const MARKDOWN_STYLES = {
   image: ['prose-img:mx-auto', 'prose-img:rounded-md', 'prose-img:shadow-lg', 'dark:prose-img:shadow-black'],
   list: ['prose-li:text-gray-700', 'dark:prose-li:text-gray-300', 'prose-li:font-[350]'],
   table: ['prose-th:text-start'],
-  link: [
-    'prose-a:text-gray-500 hover:prose-a:no-underline hover:prose-a:text-primary-md prose-a:transition-all prose-a:duration-500',
-    'prose-a:relative',
-    'prose-a:before:absolute prose-a:before:bottom-0 prose-a:before:left-0 prose-a:before:w-0 prose-a:before:h-[1px] prose-a:before:bg-primary-md prose-a:before:transition-all prose-a:before:duration-500',
-    'hover:prose-a:before:w-full'
-  ],
   li: ['prose-li:text-[#464646] dark:prose-li:text-gray-300']
 } as const;
 
