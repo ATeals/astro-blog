@@ -6,6 +6,7 @@ export const OutLink = ({ href, children }: { href: string; children?: string })
   return (
     <a
       href={href}
+      target="_blank"
       className={cn(
         'inline-flex items-baseline gap-1',
         'no-underline transition-all duration-500 hover:text-primary-lg',
