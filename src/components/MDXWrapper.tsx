@@ -20,7 +20,7 @@ const MARKDOWN_STYLES = {
   paragraph: [
     'prose-p:leading-7 prose-p:tracking-normal antialiased',
     'prose-p:break-words',
-    'prose-p:text-[#464646] dark:prose-p:text-gray-300',
+    'text-[#464646] dark:text-gray-300',
     'prose-p:font-normal ',
     'prose-p:mb-8'
   ],
@@ -33,6 +33,7 @@ const MARKDOWN_STYLES = {
   ],
   blockquote: [
     'prose-quoteless',
+    'prose-blockquote:text-sm',
     'dark:prose-blockquote:text-zinc-400',
     'dark:prose-blockquote:bg-zinc-800',
     'prose-blockquote:not-italic',
@@ -40,6 +41,7 @@ const MARKDOWN_STYLES = {
     'dark:prose-blockquote:border-primary-md',
     'prose-blockquote-p:mb-[0.5rem]',
     'prose-blockquote:pr-4',
+    'prose-blockquote:[&>p]:m-0',
     'prose-blockquote:bg-slate-50',
     'prose-blockquote:shadow-inner',
     'prose-blockquote:shadow-zinc-300',
@@ -73,7 +75,8 @@ const MARKDOWN_STYLES = {
     'prose-a:relative',
     'prose-a:before:absolute prose-a:before:bottom-0 prose-a:before:left-0 prose-a:before:w-0 prose-a:before:h-[1px] prose-a:before:bg-primary-md prose-a:before:transition-all prose-a:before:duration-500',
     'hover:prose-a:before:w-full'
-  ]
+  ],
+  li: ['prose-li:text-[#464646] dark:prose-li:text-gray-300']
 } as const;
 
 const MARKDOWN_STYLE_CLASSNAME = Object.values(MARKDOWN_STYLES)

@@ -13,7 +13,8 @@
   align-items: center;
   gap: 0.5em;
   margin-bottom: 0.5em;
-  font-size: 1rem;
+
+  @apply text-sm font-semibold;
 }
 
 .callout-title > p {
