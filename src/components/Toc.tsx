@@ -5,8 +5,8 @@ import { type CollectionData, PostBuilder } from '@/service/mdx';
 
 const HEADING_LEVELS_MAP = {
   1: 'mb-8 font-bold',
-  2: 'pt-2 font-semibold',
-  3: 'pt-2 border-r border-r-zinc-200 font-thin'
+  2: 'pt-4',
+  3: 'pt-1 border-r border-r-zinc-500'
 };
 
 export const Toc = ({ post }: { post: CollectionData }) => {
@@ -26,11 +26,14 @@ export const Toc = ({ post }: { post: CollectionData }) => {
           style={{ marginRight: (level - 2) * 5, paddingRight: (level - 2) * 5 }}
           className={cn(
             HEADING_LEVELS_MAP[level],
-            'mr-2 hover:text-primary-lg hover:underline',
-            activeHeading.value === text && activeHeading.level === level && 'text-secondary-md'
+            'text-zic-700',
+            activeHeading.value === text && activeHeading.level === level && 'font-normal text-black dark:text-white'
           )}
         >
-          <span className="hover:cursor-pointer" onClick={() => goHeading({ slug })}>
+          <span
+            className="rounded-md hover:cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700"
+            onClick={() => goHeading({ slug })}
+          >
             {text}
           </span>
         </li>
