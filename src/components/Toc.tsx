@@ -56,7 +56,7 @@ export const useSelectedHeading = ({
           const headingElement = entry.target as HTMLHeadingElement;
 
           setActiveHeading({
-            value: headingElement.innerText,
+            value: headingElement.innerText.replaceAll('#', ''),
             level: Number(headingElement.tagName.replace('H', ''))
           });
         }
