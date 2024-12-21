@@ -26,10 +26,10 @@ const rest = posts.length > 2 ? posts.slice(1) : posts;
               src={mostRecent.data.image}
             />
           </div>
-          <div class="relative p-2 md:p-5">
+          <div class="w-full p-2 md:w-1/3 md:p-5">
             <h4 class="text-xl font-normal group-hover/posts:text-primary-xl">{mostRecent.data.title}</h4>
 
-            <TagList className="pb-2" tags={mostRecent.data.tags} />
+            <TagList className="pb-2" client:load tags={mostRecent.data.tags} />
             <p class="bottom-0 w-full text-sm md:absolute">
               <Time date={mostRecent.data.date} />
             </p>
@@ -54,7 +54,7 @@ const rest = posts.length > 2 ? posts.slice(1) : posts;
             <div class="p-2">
               <h4 class="text-lg font-normal group-hover/posts:text-primary-xl">{post.data.title}</h4>
 
-              <TagList className="pb-2" tags={post.data.tags} />
+              <TagList className="pb-2" client:load tags={post.data.tags} />
 
               <p class="text-sm">
                 <Time date={post.data.date} />

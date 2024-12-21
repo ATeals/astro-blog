@@ -34,6 +34,22 @@ export class PostBuilder {
     return new PostBuilder(collections);
   }
 
+  static async getAllTags() {
+    const collections = await getAllCollection();
+
+    return collections
+      .flatMap((collection) => collection.data.tags)
+      .filter((tag) => tag)
+      .reduce<string[]>((ac, tag) => {
+        const tagSet = new Set(ac);
+
+        if (!tag) return Array.from(tagSet);
+
+        tagSet.add(tag);
+        return Array.from(tagSet);
+      }, []);
+  }
+
   static async getByCollection(name: string) {
     const collections = isCollectionType(name) ? await getCollection(name) : await getAllCollection();
 
@@ -44,6 +60,12 @@ export class PostBuilder {
     const collections = await getAllCollection();
 
     return new PostBuilder(collections).collections.filter((collection) => collection.data?.series === series);
+  }
+
+  static async getByTag(tag: string) {
+    const collections = await getAllCollection();
+
+    return new PostBuilder(collections).collections.filter((collection) => collection.data.tags?.includes(tag));
   }
 
   parseCollection(collection: AllCollectionEntry) {

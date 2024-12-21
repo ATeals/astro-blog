@@ -6,7 +6,7 @@ import { POST_TYPES } from '@/service/mdx';
   {
     POST_TYPES.map(({ href, icon }) => (
       <li class="group">
-        <a class="" href={href}>
+        <a class="" href={`/${href}`}>
           <span class="rounded-full text-sm">{icon}</span>
         </a>
       </li>

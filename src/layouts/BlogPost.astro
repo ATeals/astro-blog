@@ -5,8 +5,8 @@ import { AdjacentPostNav } from '@/components/AdjacentPostNav';
 import { Giscus } from '@/components/Giscus';
 import { PostIcon } from '@/components/PostIcon';
 import { ReadingTime } from '@/components/ReadingTime';
+import { TagList } from '@/components/TagList';
 import { Time } from '@/components/Time';
-import { Badge } from '@/components/ui/badge';
 import type { CollectionData } from '@/service/mdx';
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 
 const {
   post: {
-    data: { title, image, date, icon }
+    data: { title, image, date }
   },
   prev,
   next
@@ -52,9 +52,7 @@ const time = Math.ceil(readingTime(post.body, { wordsPerMinute: 300 }).minutes);
           <ReadingTime client:load time={time} />
           <Time date={date} />
 
-          <ul class="pt-5">
-            {post.data.tags?.map((tag) => <Badge className="text-[0.5rem] mr-1">{tag}</Badge>)}
-          </ul>
+          <TagList className="pt-5" client:load tags={post.data.tags} />
 
           <hr class="my-10 w-full border-b-[0.01rem] border-gray-500" />
         </div>
