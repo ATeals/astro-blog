@@ -4,6 +4,7 @@ import Logo from 'public/logo.png';
 
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import { PagefindButton } from '@/components/CMD/PagefindButton';
+import DefaultJsonLd from '@/components/DefaultJsonLd.astro';
 import PostTypeNav from '@/components/postType/PostTypeNav.astro';
 import SocialLink from '@/components/SocialLink.astro';
 import { ThemeButton } from '@/components/Theme/ThemeButton';
@@ -58,4 +59,6 @@ const postCount = [...document].length;
     <Separator />
     <GridPostsLayout posts={posts} />
   </section>
+
+  <DefaultJsonLd />
 </DefaultLayout>

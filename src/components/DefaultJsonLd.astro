@@ -1,0 +1,39 @@
+---
+import { SITE } from '@/consts';
+import { PostBuilder } from '@/service/mdx';
+
+const document = await PostBuilder.getAll();
+
+const posts = [...document].slice(0, 3);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: SITE.title,
+  url: SITE.domain,
+  description: SITE.description,
+  mainEntity: {
+    '@type': 'Blog',
+    headline: '최신 포스팅',
+    blogPosts: posts.map((post) => {
+      return {
+        '@type': 'BlogPosting',
+        headline: post.data.title,
+        datePublished: post.data.date,
+        dateModified: post.data.date,
+        description: post.data.description,
+        image: post.data.image,
+        url: `${SITE.domain}${post.href}`,
+        author: {
+          '@type': 'Person',
+          name: 'Ateals'
+        }
+      };
+    })
+  }
+};
+
+const rowJsonLd = JSON.stringify(jsonLd);
+---
+
+<script set:html={rowJsonLd} type="application/ld+json" />
