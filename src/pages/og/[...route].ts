@@ -24,18 +24,22 @@ export const { GET, getStaticPaths } = OGImageRoute({
       title: data.title,
       description: data.description,
       bgGradient: [[40, 70, 110]],
+      padding: 100,
       logo: {
-        path: './public/logo.png',
-        size: [200, 200],
+        path: './public/thumbDuck.png',
+        size: [250],
         position: ['start', 'center']
       },
       font: {
         title: {
-          families: ['Pretendard']
+          families: ['Pretendard'],
+          weight: 'Bold',
+          size: 60
         },
         description: {
           color: [200, 200, 200],
-          families: ['Pretendard']
+          families: ['Pretendard'],
+          size: 20
         }
       },
       fonts: ['public/font/Pretendard-Regular.woff']
