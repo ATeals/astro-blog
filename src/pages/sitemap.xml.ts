@@ -26,7 +26,12 @@ const createPostSitemap = ({ posts }: { posts: CollectionData[] }) => {
     .sort((a, b) => ((a.data.updated ?? a.data.date) > (b.data.updated ?? b.data.date) ? -1 : 1))
     .map((post) => {
       const lastMod = (post.data.updated ?? post.data.date).toISOString();
-      return `<url><loc>${new URL(post.href, SITE.domain).href}/</loc><lastmod>${lastMod}</lastmod></url>`;
+      return `<url>
+      <loc>${new URL(post.href, SITE.domain).href}/</loc>
+      <lastmod>${lastMod}</lastmod>
+      <priority>${0.5}</priority>
+      <changefreq>weekly</changefreq>
+      </url>`;
     })
     .join('\n');
 };
