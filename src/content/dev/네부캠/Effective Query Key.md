@@ -2,7 +2,7 @@
 title: Effective Query Key
 description: QueryFactory로 Query Options 효과적으로 재사용하기.
 image:
-icon: https://seeklogo.com/images/R/react-query-logo-1340EA4CE9-seeklogo.com.png
+icon:
 tags:
   - React
   - 네부캠
